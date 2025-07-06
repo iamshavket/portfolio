@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shavket Shohradov | Project Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Raleway', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            max-width: 600px;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            right: -300px;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            left: -200px;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+     .about-image {
+    flex: 1;
+    position: relative;
+    z-index: 1; /* Добавляем z-index для корректного отображения псевдоэлемента */
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative; /* Добавляем относительное позиционирование */
+    z-index: 2; /* Поднимаем изображение над рамкой */
+}
+
+.about-image::before {
+    content: '';
+    position: absolute;
+    width: 102%;
+    height: 101%;
+    border: 5px solid var(--primary);
+    top: -10px;
+    left: -10px;
+    border-radius: 20px;
+    z-index: 1; /* Устанавливаем ниже изображения */
+    background: transparent; /* Убедимся, что фон прозрачный */
+}
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .services-offer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .services-offer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .services-offer p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-box i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-box h4 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 50px;
+        }
+
+        .contact-item-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-item-content p, .contact-item-content a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item-content a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Project Page */
+        .project-page {
+            padding: 150px 0 60px;
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .project-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .project-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 50px;
+        }
+
+        .project-description h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .project-description p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .project-tech {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .project-tech h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-name {
+            font-weight: 500;
+        }
+
+        .tech-level {
+            color: var(--gray);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-btn i {
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Raleway', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--gray);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-subtitle {
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            transform: translateX(200%);
+            transition: transform 0.5s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Service Offer */
+        .service-offer {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+        }
+
+        .service-offer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-offer p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-image {
+                width: 40%;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(15, 23, 42, 0.95);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding: 150px 0 60px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+        .logo img {
+            height: 40px; /* Оптимальный размер логотипа */
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        .logo {
+  width: 120px;
+  height: auto;
+}
+
+/* Для экранов с плотностью пикселей 2x */
+@media 
+  (-webkit-min-device-pixel-ratio: 2), 
+  (min-resolution: 192dpi) { 
+    .logo {
+      width: 20px; /* Удвоенный размер */
+      transform: scale(0.5); /* Сжатие до исходных габаритов */
+      transform-origin: 0 0;
+    }
+}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo"> 
+                         <!-- Вместо реального изображения используем псевдо-лого -->
+                  <img src="img/logo_1.png" alt="Shavket Shohradov" class="logo img" width="80px">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Привет, я <span>Shavket Shohradov</span><br>Project Manager</h1>
+                <p>Управляю командами разработчиков для создания современных веб и мобильных приложений. Превращаю ваши идеи в успешные цифровые продукты.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">Мои работы</a>
+                    <a href="#contact" class="btn btn-secondary">Связаться</a>
+                </div>
+            </div>
+            <div class="hero-image floating">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Shavket Shohradov">
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Offer -->
+    <div class="container">
+        <div class="service-offer">
+            <h2>Ищете надежного партнера для вашего проекта?</h2>
+            <p>Моя команда экспертов готова выполнить любые задачи по разработке мобильных и веб-приложений по разумной цене. Специализируемся на создании современных, масштабируемых решений с использованием передовых технологий. От концепции до запуска - мы обеспечим полный цикл разработки и гарантируем качество.</p>
+            <a href="#contact" class="btn btn-primary">Обсудить проект</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Обо мне</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="img/me.jpg" alt="Обо мне">
+                </div>
+                <div class="about-text">
+                    <h3>Профессиональный подход</h3>
+                    <p>Я project manager с более чем 4-летним опытом в управлении IT-проектами. Моя специализация - создание мобильных и веб-приложений для бизнеса различного масштаба.</p>
+                    <p>Моя цель - не просто выполнить задачу, а создать продукт, который принесет реальную пользу бизнесу. Я работаю с командами разработчиков, дизайнеров, обеспечивая слаженную работу всех участников процесса.</p>
+                    
+                    <div class="services-offer">
+                        <h3>Что я предлагаю?</h3>
+                        <p>Полный цикл разработки приложений: от анализа требований до запуска и поддержки. Гарантирую прозрачность процесса, соблюдение сроков и бюджетов.</p>
+                        <a href="#contact" class="btn btn-secondary">Заказать консультацию</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мои компетенции</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>Веб-разработка</h3>
+                    <p>HTML5, CSS3, JavaScript, React, Vue.js, Angular, Node.js, Express, RESTful API, WebSockets</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Мобильная разработка</h3>
+                    <p>Flutter, Kotlin, Java, Swift, React Native, Ionic, Firebase, Mobile UX/UI Design</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Backend & Базы данных</h3>
+                    <p>Python, Django, Go, Laravel, MySQL, PostgreSQL, MongoDB, Redis, Docker</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Управление проектами</h3>
+                    <p>Agile, Scrum, Kanban, Jira, Trello, Git, CI/CD, Техническая документация, Оценка проектов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Управленные проекты</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="img/unnamed.jpg" alt="Проект 2">
+                    </div>
+                    <div class="project-content">
+                        <h3>BIJE - Выиграй Призы</h3>
+                        <p>Получайте баллы, участвуйте в конкурсах Bije и выиграйте Призы. Желаем Успехи! Скачайте и установите старые версии BIJE - Выиграй Призы, которые подходят для вашей модели устройства, и наслаждайтесь любимыми функциями!</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">Swift</span>
+                            <span class="project-tag">Node.js</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" onclick="openProject('bije')">Детали проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="img/ts.jpg" alt="Проект 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Turkmen sport - новости спорта</h3>
+                        <p>Мировые и национальные спортивные новости. Turkmen sport — мобильный портал, представляющий собой программный комплекс всей информации о мире спорта.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Swift</span>
+                            <span class="project-tag">iOS</span>
+                            <span class="project-tag">Python</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" onclick="openProject('tsport')">Детали проекта</a>
+                    </div>
+                </div>
+
+
+
+                 <div class="project-card">
+                    <div class="project-img">
+                        <img src="img/cl_1.jpg" alt="Проект 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Live Concert Sound Effects</h3>
+                        <p>Live Concert Sound Effects волшебным образом переносит вас на живые концерты и проникает прямо в ваш разум и сердце, чтобы вы чувствовали себя очень расслабленно.C  Live Concert Sound Effects вы можете посещать концерты, не выходя из дома, в любом месте и в любое время!</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Swift</span>
+                            <span class="project-tag">iOS</span>
+                            <span class="project-tag">Django</span>
+                        </div>
+                        <a href="#" class="btn btn-primary" onclick="openProject('concertLive')">Детали проекта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Контактная секция -->
+<section id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Контакты</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Свяжитесь со мной</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-item-content">
+                        <h4>Местоположение</h4>
+                        <p>Ашхабад, Туркменистан</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-item-content">
+                        <h4>Email</h4>
+                        <a href="mailto:shohradovshavket55@gmail.com">shohradovshavket55@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="contact-item-content">
+                        <h4>Телефон</h4>
+                        <a href="tel:+99362430662">+993 62 43-06-62</a>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://wa.me/qr/324Y6RWU6ITNP1" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/iamshavket" class="telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.instagram.com/iamshavket/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" class="form-control" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Тема сообщения" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" class="form-control" placeholder="Опишите ваш проект" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить запрос</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Скрипт для отправки формы -->
+<script>
+        // Функция для отправки формы
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            // Собираем данные из формы
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Проверка заполнения всех полей
+            if (!name || !email || !subject || !message) {
+                showNotification('Пожалуйста, заполните все поля', true);
+                return;
+            }
+            
+            // Проверка формата email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Пожалуйста, введите корректный email', true);
+                return;
+            }
+            
+            // Формируем тело письма
+            const body = `Имя: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+            
+            // Формируем mailto ссылку
+            const mailtoLink = `mailto:shohradovshavket55@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Показываем уведомление об отправке
+            showNotification('Открывается почтовый клиент... Пожалуйста, отправьте письмо');
+            
+            // Открываем почтовый клиент с задержкой
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+                
+                // Сбрасываем форму
+                document.getElementById('contactForm').reset();
+            }, 1500);
+        }
+        
+        // Функция для показа уведомлений
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            
+            if (isError) {
+                notification.classList.add('error');
+            } else {
+                notification.classList.remove('error');
+            }
+            
+            notification.classList.add('show');
+            
+            // Скрываем уведомление через 5 секунд
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Функция для копирования email в буфер обмена
+        function copyEmailToClipboard() {
+            const email = 'shohradovshavket55@gmail.com';
+            
+            navigator.clipboard.writeText(email).then(() => {
+                showNotification('Email скопирован в буфер обмена!');
+            }).catch(err => {
+                showNotification('Не удалось скопировать email', true);
+                console.error('Ошибка копирования: ', err);
+            });
+        }
+        
+        // Назначаем обработчики событий
+        document.getElementById('contactForm').addEventListener('submit', sendEmail);
+        document.getElementById('copyEmailBtn').addEventListener('click', copyEmailToClipboard);
+    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Shavket Shohradov</div>
+                <p>© 2025 Shavket Shohradov. Все права защищены.</p>
+                <p>Профессиональное управление IT-проектами</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Galkan Töleg</h2>
+            <p class="modal-subtitle" id="modalSubtitle">Flutter, Firebase, Node.js</p>
+            
+            <div class="modal-body">
+                <div class="project-gallery" id="modalGallery">
+                    <!-- Images will be added dynamically -->
+                </div>
+                
+                <div id="modalDescription">
+                    <!-- Description will be added dynamically -->
+                </div>
+                
+                <div class="project-tech">
+                    <h3>Использованные технологии</h3>
+                    <ul class="tech-list" id="techList">
+                        <!-- Tech list will be added dynamically -->
+                    </ul>
+                </div>
+            </div>
+            
+            <a href="" class="btn btn-primary" id="liveLink" target="_blank">Посмотреть живой проект</a>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">Сообщение успешно отправлено!</div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navLinks.classList.remove('active');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const notification = document.getElementById('notification');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show notification
+            notification.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        });
+
+        // Project data
+        const projects = {
+            galkan: {
+                title: "Galkan Töleg",
+                subtitle: "Flutter, Firebase, Node.js",
+                images: [
+                    "img/galkan1.jpg",
+                    "img/galkan2.jpg",
+                    "img/galkan3.jpg",
+                    "img/galkan4.jpg"
+                ],
+                description: `
+                    <p>Мобильное приложение для управления личными автомобилями с целью просмотра штрафов за ваш автомобиль и их удобной оплаты. Пользователь может оплатить услуги и штрафы через Интернет из любой точки страны.</p>
+                    <h3>Особенности проекта:</h3>
+                    <ul>
+                        <li>Мгновенные переводы между счетами</li>
+                        <li>Категоризация расходов отчеты</li>
+                        <li>Инвестиционный портфель с аналитикой</li>
+                        <li>Чат поддержки 24/7</li>
+                        <li>Push-уведомления о транзакциях</li>
+                    </ul>
+                    <p>Приложение было разработано с использованием кроссплатформенной технологии Flutter, что позволило запустить продукт одновременно на iOS и Android с нативным качеством.</p>
+                    <h3>Моя роль как Project Manager:</h3>
+                    <p>Я руководил командой из 5 человек (1 Flutter разработчика, 2 бэкенд разработчика, 1 фроненд разработчика , 1 дизайнер). Мои задачи включали планирование спринтов, управление рисками, коммуникацию с заказчиком и обеспечение соблюдения сроков. Проект был завершен за 2 месяцев с соблюдением бюджета.</p>
+                `,
+                technologies: [
+                    { name: "Flutter", level: "Frontend" },
+                    { name: "Dart", level: "Язык программирования" },
+                    { name: "Firebase", level: "Бэкенд" },
+                    { name: "Node.js", level: "API" },
+                    { name: "MongoDB", level: "База данных" },
+                    { name: "Google Analytics", level: "Управление проектом" },
+                    { name: "Figma", level: "Дизайн" }
+                ],
+                liveLink: "https://play.google.com/store/apps/details?id=mia.gov.tm&hl=tr"
+            },
+            bije: {
+                title: "BIJE - Выиграй Призы",
+                subtitle: "Java, Android, React",
+                images: [
+                    "img/b_screen-0.jpg",
+                    "img/b_screen-1.jpg",
+                    "img/b_screen-2.jpg",
+                    "img/b_screen-3.jpg",
+                    "img/b_screen-4.jpg",
+                    "img/b_screen-5.jpg",
+                    "img/b_screen-6.jpg",
+                    "img/b_screen-7.jpg",
+                ],
+                description: `
+                    <p>Получайте баллы, участвуйте в конкурсах Bije и выиграйте Призы. Желаем Успехи!</p>
+                    <h3>Основные функции:</h3>
+                    <ul>
+                        <li>Решайте тесты: За каждый правильный ответ вы получите баллы. При решении теста обратите внимание на указанные баллы. В некоторых вопросах вы можете получить больше баллов,</li>
+                        <li>Делитесь своими мнениями и вопросами с пользователями и получайте удовольствие от поиска ответов.</li>
+                        <li>Рекламное объявление: Просмотрите объявления и правильно ответьте на соответствующие вопросы. За это вы получите большие баллы. После того, как вы получаете баллы 1 раз на рекламе, вы сможете получать баллы на той же рекламе через 24 часа. Будьте активны</li>
+                        <li>Получите Бонус: Бонусные баллы начисляются каждые 24 часа за вашу активность. Не забывайте получать бонусы.</li>
+                        <li>Поделитесь приложением с друзьями. Вам будут начисляться дополнительные баллы за каждого пользователя, вошедшего по вашей ссылке. Это самый простой и быстрый способ набрать баллы. Делиться с большим количеством людей более выгодно для вас.</li>
+                        <li>Приобретите купоны Bije на накопленные баллы и выиграйте большие призы. Чем больше купонов вы приобретёте, тем больше у вас шансов на победу.</li>
+                    </ul>
+                    <h3>Моя роль как Project Manager и Android разработчик</h3>
+                    <p>Я управлял командой из 5 специалистов (1 Android разработчика, 1 iOS разработчика, 1 бэкенд разработчика, 1 фроненд разработчика , 1 дизайнер). Особое внимание уделял соблюдению сроков и нормативных требований. Проект был реализован за 3 месяцев с поэтапным внедрением в 3 клиниках.</p>
+                `,
+                technologies: [
+                    { name: "Java", level: "Android" },
+                    { name: "Swift", level: "iOS" },
+                    { name: "React", level: "Web" },
+                    { name: "Spring Boot", level: "Backend" },
+                    { name: "PostgreSQL", level: "База данных" },
+                ],
+                liveLink: "https://apkpure.com/ru/bije-%D0%B2%D1%8B%D0%B8%D0%B3%D1%80%D0%B0%D0%B9-%D0%BF%D1%80%D0%B8%D0%B7%D1%8B/com.tm.azico.bije"
+            },
+            tsport: {
+                title: "Turkmen sport - новости спорта",
+                subtitle: "Swift, Java, Django",
+                images: [
+                    "img/ts_main.jpg",
+                    "img/ts_screen-2.jpg",
+                    "img/ts_screen-3.jpg",
+                    "img/ts_screen-4.jpg",
+                    "img/ts_screen-5.jpg",
+
+                    ],
+                description: `
+                    <p> Мировые и национальные спортивные новости. Turkmen sport — мобильный портал, представляющий собой программный комплекс всей информации о мире спорта. </p>
+                    <h3>Ключевые возможности:</h3>
+                    <ul>
+                        <li>Эксклюзивные интервью с отечественными и зарубежными мастерами спорта, аналитические статьи;</li>
+                        <li>Международные обзоры футбола, бокса, баскетбола;</li>
+                        <li>Онлайн-трансляции Лиги Европы по футболу и Чемпионата Туркменистана по футболу;</li>
+                        <li>Самая живая и популярная фотогалерея;</li>
+                        <li>Видеокомментарии и интересные моменты спортивных соревнований и футбольных матчей;</li>
+                        <li>Онлайн табло лучших футбольных чемпионатов;</li>
+                        <li>Cтатистика команды;</li>
+                        <li>Последовательность столбцов, отражающая события года;</li>
+                    </ul>
+                    <p>Платформа доступна как в веб-версии, так и в виде мобильных приложений для iOS и Android.</p>
+                    <h3>Моя роль как Project Manager:</h3>
+                    <p>Я руководил международной командой из 5 человек, распределенной по разным часовым поясам. Проект был завершен за 5 месяцев и получил высокие оценки от первых пользователей.</p>
+                `,
+                technologies: [
+                    { name: "Swift", level: "iOS" },    
+                    { name: "Java", level: "Android" },
+                    { name: "UIKit", level: "UI Framework" },
+                    { name: "Django", level: "Backend" },
+                    { name: "Python", level: "Backend" },
+                    { name: "PostgreSQL", level: "База данных" },
+
+                ],
+                liveLink: "https://apkpure.com/ru/turkmen-sport-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8-%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0/tm.com.tm.sport"
+            },
+
+
+             concertLive: {
+                title: "Live Concert Sound Effects",
+                subtitle: "Swift, Kotlin, Django",
+                images: [
+                    "img/live1.jpg",
+                    "img/live2.jpg",
+                    "img/live3.jpg",
+                    "img/live5.jpg",
+                    "img/live6.jpg",
+                    "img/live7.jpg",
+                    "img/live8.jpg",
+                    ],
+                description: `
+                    <p>Live Concert Sound Effects волшебным образом переносит вас на живые концерты и проникает прямо в ваш разум и сердце, чтобы вы чувствовали себя очень расслабленно.C  Live Concert Sound Effects вы можете посещать концерты, не выходя из дома, в любом месте и в любое время!</p>
+                    <h3>Ключевые возможности:</h3>
+                    <ul>
+                        <li>Транслируйте невероятные концерты популярных исполнителей самых разных жанров, включая поп, рок, рэп и многое другое;</li>
+                        <li>Загружайте собственные песни;</li>
+                        <li>Настраивайте звуки в миксе;</li>
+                        <li>Отрегулируйте громкость каждого звука в миксе;</li>
+                        <li>Легкий доступ к любимым миксам;</li>
+                        <li>Сохраняйте свои комбинации звуков, чтобы воспроизводить их, когда захотите;</li>
+                        <li>Множество предустановленных комбинаций;</li>
+                        <li>Поддержка воспроизведения в фоновом режиме при использовании других приложений или с заблокированным экраном;</li>
+                    </ul>
+                    <p>Платформа доступна как в веб-версии, так и в виде мобильных приложений для iOS и Android.</p>
+                    <h3>Моя роль как Project Manager и Android разработчик:</h3>
+                    <p>Я руководил международной командой из 5 человек, распределенной по разным часовым поясам. Проект был завершен за 3 месяцев и получил высокие оценки от первых пользователей.</p>
+                `,
+                technologies: [
+                    { name: "Swift", level: "iOS" },    
+                    { name: "Kotlin", level: "Android" },
+                    { name: "UIKit", level: "UI Framework" },
+                    { name: "Django", level: "Backend" },
+                    { name: "Python", level: "Backend" },
+                    { name: "PostgreSQL", level: "База данных" },
+                    { name: "Google Analytics", level: "Управление проектом" },
+                ],
+                liveLink: "https://apkpure.com/ru/live-concert-sound-effects/com.liveconsert.azico.team"
+            }
+        };
+
+        // Open project modal
+        function openProject(projectId) {
+            const project = projects[projectId];
+            const modal = document.getElementById('projectModal');
+            const gallery = document.getElementById('modalGallery');
+            const description = document.getElementById('modalDescription');
+            const techList = document.getElementById('techList');
+            const liveLink = document.getElementById('liveLink');
+            
+            // Set title and subtitle
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalSubtitle').textContent = project.subtitle;
+            
+            // Set images
+            gallery.innerHTML = '';
+            project.images.forEach(img => {
+                gallery.innerHTML += `<img src="${img}" alt="${project.title}">`;
+            });
+            
+            // Set description
+            description.innerHTML = project.description;
+            
+            // Set technologies
+            techList.innerHTML = '';
+            project.technologies.forEach(tech => {
+                techList.innerHTML += `
+                    <li>
+                        <span class="tech-name">${tech.name}</span>
+                        <span class="tech-level">${tech.level}</span>
+                    </li>
+                `;
+            });
+            
+            // Set live link
+            liveLink.href = project.liveLink;
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('projectModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
